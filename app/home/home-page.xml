@@ -1,0 +1,19 @@
+<Page class="page"
+    navigatingTo="onNavigatingTo"  
+    xmlns="http://schemas.nativescript.org/tns.xsd"
+    actionBarHidden="true">
+
+    <ActionBar
+        class="action-bar">
+        <Label 
+            class="action-bar-title" 
+            text="TrueID"></Label>
+    </ActionBar>
+
+    <GridLayout>
+        <ActivityIndicator 
+            height="40" width="40"
+            visibility="{{ !loaded ? 'visible' : 'collapsed' }}" 
+            busy="true" />
+    </GridLayout>
+</Page>
