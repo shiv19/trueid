@@ -9,7 +9,6 @@ platforms/
 tmp/
 typings/
 .idea
-*.keystore
 .tmp_backup
 .vscode
 package-lock.json
