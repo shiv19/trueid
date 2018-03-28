@@ -1,5 +1,6 @@
 <Page class="page"
     navigatingTo="onNavigatingTo"  
+    loaded="onLoaded"
     xmlns="http://schemas.nativescript.org/tns.xsd"
     actionBarHidden="true">
 
@@ -10,10 +11,34 @@
             text="TrueID"></Label>
     </ActionBar>
 
-    <GridLayout>
-        <ActivityIndicator 
+    <GridLayout row="auto, *, auto" col="*">
+
+        <WebView row="0" col="0" id="webView" />
+        
+        <ActivityIndicator row="1" col="0"
             height="40" width="40"
             visibility="{{ !loaded ? 'visible' : 'collapsed' }}" 
             busy="true" />
+
+        <Label visibility="{{ loaded ? 'visible' : 'collapsed' }}" 
+            row="0" col="0" fontSize="18" padding="20" class="text-muted" 
+            text="You don't have any ID cards yet. Please visit an issuer to get ID card." textWrap="true"/>
+
+        <Label visibility="{{ loaded ? 'visible' : 'collapsed' }}" 
+            row="1" col="0" class="fa text-center" 
+            text="&#xf2c3;" fontSize="150" color="rgba(0,0,0,0.5)"
+            verticalAlignment="center" />
+
+        <StackLayout class="p-20" marginTop="100" row="1" col="0" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
+
+            <Label 
+                class="fa text-center" textWrap="true"
+                text="{{ 'Your address:\n' + (address || '') }}" fontSize="18"
+                verticalAlignment="center" />
+
+            <Button text="logout" tap="onLogout" class="btn btn-primary" />
+
+        </StackLayout>
+
     </GridLayout>
 </Page>

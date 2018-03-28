@@ -2,6 +2,12 @@ const HomeViewModel = require("./home-view-model");
 const appSettings = require("application-settings");
 const routes = require("~/shared/routes");
 const topmost = require("ui/frame").topmost;
+const webViewInterfaceModule = require('nativescript-webview-interface');
+let oWebViewInterface;
+let homeViewModel;
+
+// require("nativescript-nodeify");
+// const HDWalletProvider = require("truffle-hdwallet-provider");
 
 function onNavigatingTo(args) {
     const page = args.object;
@@ -11,6 +17,10 @@ function onNavigatingTo(args) {
         return;
     }
 
+    // Create and bind VM
+    homeViewModel = new HomeViewModel();
+    page.bindingContext = homeViewModel;
+    
     // Goto login page if mnemonic phrase is not set
     const mnemonic = appSettings.getString("mnemonic", "");
     if (mnemonic === "") {
@@ -19,13 +29,41 @@ function onNavigatingTo(args) {
         return;
     }
 
-    // Create and bind VM
-    const homeViewModel = new HomeViewModel();
-    page.bindingContext = homeViewModel;
-
     // Set loaded to true, and show actionBar
     homeViewModel.set("loaded", true);
     page.actionBarHidden = false;
 }
 
+function onLoaded(args) {
+    const page = args.object;
+
+    if (page.bindingContext) {
+        console.log("setting up webview");
+        setupWebViewInterface(page);
+    }
+}
+
+// Initializes plugin with a webView
+function setupWebViewInterface(page){
+    var webView = page.getViewById('webView');
+    oWebViewInterface = new webViewInterfaceModule.WebViewInterface(webView, '~/www/index.html');
+
+    const mnemonic = appSettings.getString("mnemonic", "");  
+
+    setTimeout(() => {
+        console.log("calling js function");
+        oWebViewInterface.callJSFunction('initWeb3', mnemonic, function(account){
+            console.log(account);
+            homeViewModel.set("address", account);
+        });
+    }, 3000);
+}
+
+function onLogout(args) {
+    appSettings.clear();
+    args.object.page.frame.navigate(routes.login);
+}
+
 exports.onNavigatingTo = onNavigatingTo;
+exports.onLoaded = onLoaded;
+exports.onLogout = onLogout;

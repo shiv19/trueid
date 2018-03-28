@@ -1,6 +1,9 @@
 const observableModule = require("data/observable");
+const appSettings = require("application-settings");
+const routes = require("~/shared/routes");
 require("nativescript-nodeify");
 const bip39 = require("bip39");
+
 const dialogsModule = require("ui/dialogs");
 
 function MnemonicVerifyViewModel() {
@@ -18,10 +21,17 @@ function MnemonicVerifyViewModel() {
                 mnemonicEntryField.dismissSoftInput();
                 mnemonicEntryField.isEnabled = false;
 
-                console.log("generating seed hex");
+                appSettings.setString("mnemonic", this.mnemonic);
 
-                this.seedHex = bip39.mnemonicToSeedHex(this.mnemonic);
-                console.log(this.seedHex);
+                args.object.page.frame.navigate({
+                    moduleName: routes.home,
+                    animate: true,
+                    transition: {
+                        name: "slideTop",
+                        duration: 380,
+                        curve: "easeIn"
+                    }
+                });
             } else {
                 dialogsModule.alert("You have entered an invalid 12 word pass phrase. Please try again.").then(function() {
                     console.log("Dialog closed!");

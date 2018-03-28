@@ -29,6 +29,7 @@
                 visibility="{{ loading ? 'visible' : 'collapse' }}"
                 marginTop="30" busy="true" height="50" />
             
+            <WebView id="webView" />
         </StackLayout>
 
     </FlexboxLayout>

@@ -23,7 +23,8 @@
             <Button 
                 id="continueBtn" 
                 class="btn btn-primary"
-                text="Continue" />
+                text="Continue"
+                tap="onContinue" />
             
         </StackLayout>
 

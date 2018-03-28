@@ -17,7 +17,7 @@ function onNavigatingTo(args) {
 
 function onContinue(args) {
 
-    dialogs.confirm({
+    dialogsModule.confirm({
         message: "Have you written down your 12 word pass phrase?",
         okButtonText: "Yes",
         cancelButtonText: "No"
