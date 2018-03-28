@@ -1,0 +1,49 @@
+.page {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form {
+    margin-left: 30;
+    margin-right: 30;
+    flex-grow: 2;
+    vertical-align: middle;
+}
+
+.logo {
+    margin-bottom: 12;
+    height: 90;
+    font-weight: bold;
+}
+
+.header {
+    horizontal-align: center;
+    font-size: 25;
+    font-weight: 600;
+    margin-bottom: 10;
+    text-align: center;
+}
+
+.lead {
+    horizontal-align: center;
+    font-size: 20;
+    font-weight: 400;
+    margin-bottom: 70;
+    text-align: center;
+}
+
+.btn-primary {
+    height: 60;
+    margin: 30 5 15 5;
+    font-size: 20;
+    font-weight: 400;
+    text-transform: capitalize;
+    width: 60%;
+}
+
+#bottomPanel {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

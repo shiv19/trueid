@@ -1,20 +1,30 @@
-<Page navigatingTo="onNavigatingTo" class="page" xmlns="http://schemas.nativescript.org/tns.xsd">
-    <ActionBar class="action-bar">
-        <Label class="action-bar-title" text="Login"></Label>
-    </ActionBar>
+<Page 
+    actionBarHidden="true"
+    navigatingTo="onNavigatingTo" 
+    loaded="onLoaded"
+    class="page" 
+    xmlns="http://schemas.nativescript.org/tns.xsd">
 
-    <ScrollView>
-        <StackLayout class="p-t-15">
+    <FlexboxLayout class="page">
 
-            <Label 
-                class="text-muted p-10" 
-                text="{{ mnemonic }}" 
-                textWrap="true"
-                fontSize="18" />
+        <StackLayout class="form">
 
-            <Button class="btn btn-primary" text="Create Account" tap="onCreateAccount"/>
-            <Button class="btn btn-primary" text="Retrieve Account" tap="onRetrieveAccount"/>
+            <Image class="logo" src="~/assets/images/logo.jpg" />
+            <Label class="header" text="True ID" />
+            <Label class="lead" text="You control your identity" />
 
         </StackLayout>
-    </ScrollView>
+
+        <FlexboxLayout 
+            id="bottomPanel" 
+            flexGrow="1" 
+            backgroundColor="#3C57FF" 
+            width="100%">
+
+            <Button id="createAccountBtn" class="btn btn-primary m-t-20" text="Create Account" tap="onCreateAccount"/>
+            <Button id="retrieveAccountBtn" class="btn btn-primary m-t-20" text="Retrieve Account" tap="onRetrieveAccount"/>
+
+        </FlexboxLayout>
+
+    </FlexboxLayout>
 </Page>

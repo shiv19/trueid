@@ -1,0 +1,25 @@
+.page {
+    flex-direction: column;
+}
+
+.form {
+    margin: 20;
+    flex-grow: 2;
+}
+
+#header {
+    horizontal-align: center;
+    font-size: 25;
+    font-weight: 600;
+    margin-bottom: 10;
+    text-align: center;
+}
+
+#mnemonic {
+    margin-top: 30;
+    font-size: 20;
+}
+
+#verifyBtn {
+    margin-top: 30;
+}

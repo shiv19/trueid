@@ -1,0 +1,35 @@
+<Page navigatingTo="onNavigatingTo" class="page"
+    xmlns="http://schemas.nativescript.org/tns.xsd" >
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="TrueID"></Label>
+    </ActionBar>
+
+    <FlexboxLayout class="page">
+
+        <StackLayout class="form">
+        
+            <Label id="header" 
+                text="Please enter your 12 word Mnemonic Pass Phrase" 
+                textWrap="true" />
+
+            <TextView id="mnemonic" 
+                borderColor="#DEDEDE" 
+                borderWidth="1" 
+                text="{{ mnemonic }}" hint="Your 12 word pass phrase" 
+                class="input input-border"/>
+
+            <Button 
+                visibility="{{ !loading ? 'visible' : 'collapse' }}"
+                id="verifyBtn" 
+                class="btn btn-primary"
+                text="Verify"
+                tap="{{ verifyMnemonic }}" />
+            
+            <ActivityIndicator 
+                visibility="{{ loading ? 'visible' : 'collapse' }}"
+                marginTop="30" busy="true" height="50" />
+            
+        </StackLayout>
+
+    </FlexboxLayout>
+</Page>

@@ -1,0 +1,31 @@
+<Page navigatingTo="onNavigatingTo" class="page"
+    xmlns="http://schemas.nativescript.org/tns.xsd" >
+    <ActionBar class="action-bar">
+        <Label class="action-bar-title" text="TrueID"></Label>
+    </ActionBar>
+
+    <FlexboxLayout class="page">
+
+        <StackLayout class="form">
+        
+            <Label id="header" 
+                text="Your 12 word Mnemonic Pass Phrase has been generated" 
+                textWrap="true" />
+            
+            <Label id="mnemonic" 
+                text="{{ mnemonic }}" 
+                textWrap="true" />
+
+            <Label id="info" 
+                text="Please write it down, and keep it in a safe place, it won't be shown to you again. If this Pass Phrase is lost, you won't be able to retrieve your account." 
+                textWrap="true" />
+
+            <Button 
+                id="continueBtn" 
+                class="btn btn-primary"
+                text="Continue" />
+            
+        </StackLayout>
+
+    </FlexboxLayout>
+</Page>
