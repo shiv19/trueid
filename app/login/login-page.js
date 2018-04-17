@@ -5,6 +5,8 @@ function onNavigatingTo(args) {
     const page = args.object;
 
     if (args.isBackNavigation) {
+        shouldAnimate = false;
+
         return;
     }
     shouldAnimate = true;
@@ -28,7 +30,7 @@ function onLoaded(args) {
             duration: 0
         });
         bottomPanel.animate({
-            translate: { x: 0, y: 00 },
+            translate: { x: 0, y: 0 },
             opacity: 100,
             duration: 800,
             curve: "easeIn"

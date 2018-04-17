@@ -9,7 +9,6 @@ const dialogsModule = require("ui/dialogs");
 function MnemonicVerifyViewModel() {
     const viewModel = observableModule.fromObject({
         mnemonic: "wet normal change meat dentist mansion radio horn ensure ahead over lunar",
-        seedHex: "",
         loading: false,
         verifyMnemonic(args) {
             this.mnemonic = this.mnemonic.trim();

@@ -46,6 +46,7 @@ function onLoaded(args) {
 // Initializes plugin with a webView
 function setupWebViewInterface(page){
     var webView = page.getViewById('webView');
+    var qrCode = page.getViewById('qrCode');
     oWebViewInterface = new webViewInterfaceModule.WebViewInterface(webView, '~/www/index.html');
 
     const mnemonic = appSettings.getString("mnemonic", "");  
@@ -55,6 +56,7 @@ function setupWebViewInterface(page){
         oWebViewInterface.callJSFunction('initWeb3', mnemonic, function(account){
             console.log(account);
             homeViewModel.set("address", account);
+            qrCode.src = 'https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=' + account;
         });
     }, 3000);
 }

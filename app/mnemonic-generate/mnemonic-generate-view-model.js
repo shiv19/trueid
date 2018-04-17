@@ -7,7 +7,6 @@ function MnemonicGenerateViewModel() {
         mnemonic: "",
         generateMnemonic() {
             this.mnemonic = bip39.generateMnemonic();
-            console.log(this.mnemonic);
         }
     });
 

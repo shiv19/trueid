@@ -36,6 +36,12 @@
                 text="{{ 'Your address:\n' + (address || '') }}" fontSize="18"
                 verticalAlignment="center" />
 
+            <Image id="qrCode" />
+
+            <StackLayout>
+
+            </StackLayout>
+
             <Button text="logout" tap="onLogout" class="btn btn-primary" />
 
         </StackLayout>
