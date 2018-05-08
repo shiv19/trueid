@@ -53,10 +53,18 @@ function setupWebViewInterface(page){
 
     setTimeout(() => {
         console.log("calling js function");
+        console.log('with mnemonic', mnemonic);
         oWebViewInterface.callJSFunction('initWeb3', mnemonic, function(account){
             console.log(account);
             homeViewModel.set("address", account);
             qrCode.src = 'https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=' + account;
+
+            oWebViewInterface.callJSFunction('getIdCard', null, function(idCard){
+                if (idCard.fullName !== "") {
+                    appSettings.setString('idCard', JSON.stringify(idCard));
+                    homeViewModel.set("idCard", idCard);
+                }
+            });
         });
     }, 3000);
 }

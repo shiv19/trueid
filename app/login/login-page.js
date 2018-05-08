@@ -1,4 +1,5 @@
 const routes = require("~/shared/routes");
+const isAndroid = require("platform").isAndroid;
 let shouldAnimate = false;
 
 function onNavigatingTo(args) {
@@ -16,7 +17,7 @@ function onLoaded(args) {
 
     const page = args.object;
 
-    if (shouldAnimate) {
+    if (shouldAnimate && isAndroid) {
         const bottomPanel = page.getViewById("bottomPanel");
         const createAccountBtn = page.getViewById("createAccountBtn");
         const retrieveAccountBtn = page.getViewById("retrieveAccountBtn");
