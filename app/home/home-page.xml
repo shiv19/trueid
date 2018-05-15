@@ -2,13 +2,19 @@
     navigatingTo="onNavigatingTo"  
     loaded="onLoaded"
     xmlns="http://schemas.nativescript.org/tns.xsd"
+    xmlns:Card="nativescript-cardview"
     actionBarHidden="true">
 
     <ActionBar
         class="action-bar">
-        <Label 
-            class="action-bar-title" 
-            text="TrueID"></Label>
+        <GridLayout columns="*, *, auto">
+            <Label col="1"
+                class="action-bar-title" 
+                text="TrueID"></Label>
+            <Button col="2" backgroundColor="#4A4EFF" width="90" class="fa"
+                tap="onLogout"
+                text="logout &#xf08b;" textTransform="none" color="white" />
+        </GridLayout>
     </ActionBar>
 
     <ScrollView>
@@ -27,28 +33,52 @@
 
             <StackLayout class="p-20" row="1" col="0" marginTop="{{ loaded && idCard.fullName ? 0 : 100 }}" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
 
-                <StackLayout visibility="{{ loaded && idCard.fullName ? 'visible' : 'collapsed' }}">
-                    <Label text="{{ 'Name: ' + idCard.fullName }}" />
-                    <Label text="{{ 'Gender: ' + idCard.gender }}" />
-                    <Label text="{{ 'Birthdate: ' + idCard.birthdate }}" />
-                    <Label text="{{ 'Address: ' + idCard.contactAddress }}" />
-                    <Label text="{{ 'Country: ' + idCard.country }}" />
-                    <Label text="{{ 'Father Name: ' + idCard.fatherName }}" />
-                    <Label text="{{ 'Mother Name: ' + idCard.motherName }}" />
-                </StackLayout>
+                <Card:CardView 
+                    visibility="{{ loaded && idCard.fullName ? 'visible' : 'collapsed' }}"
+                    backgroundColor="white" elevation="10" android:borderRadius="15" ios:borderRadius="10" margin="8" marginBottom="20">
+                    <FlexboxLayout class="id-card-container" flexDirection="column">
+                        <FlexboxLayout class="id-card-header">
+                            <Image class="id-card-logo" src="~/assets/images/logo.jpg" />
+                            <Label class="id-card-username" textWrap="true" text="{{ idCard.fullName }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="DOB" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.birthdate | dateConverter }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="Gender" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.gender }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="Address" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.contactAddress }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="Country" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.country }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="Mother's Name" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.motherName }}" />
+                        </FlexboxLayout>
+                        <FlexboxLayout class="id-card-field">
+                            <Label class="field-title" textWrap="true" text="Father's Name" />
+                            <Label class="field-value" textWrap="true" text="{{ idCard.fatherName }}" />
+                        </FlexboxLayout>
+                    </FlexboxLayout>
+                </Card:CardView>
 
-                <Label 
-                    class="fa text-center" textWrap="true"
-                    text="{{ 'Your address:\n' + (address || '') }}" fontSize="18"
+                <Label class="text-center" fontWeight="bold" fontSize="17" text="Your ethereum address: " textWrap="true"/>
+                <Label class="fa text-center eth-address" textWrap="true"
+                    text="{{ address || '' }}" 
                     verticalAlignment="center" />
+                <Label class="fa text-center share-btn" text="&#xf1e0;" tap="onShare" horizontalAlignment="right" />
 
-                <Image id="qrCode" />
-
-                <StackLayout>
-
-                </StackLayout>
-
-                <Button text="logout" tap="onLogout" class="btn btn-primary" />
+                <Label class="text-center" fontWeight="bold" fontSize="17" text="QR Code for your address: " textWrap="true"/>
+                <Card:CardView height="250"
+                    backgroundColor="white" elevation="10" android:borderRadius="15" ios:borderRadius="10" margin="8">
+                    <Image id="qrCode" />
+                </Card:CardView>
 
             </StackLayout>
 

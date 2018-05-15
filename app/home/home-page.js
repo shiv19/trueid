@@ -5,9 +5,19 @@ const topmost = require("ui/frame").topmost;
 const webViewInterfaceModule = require('nativescript-webview-interface');
 let oWebViewInterface;
 let homeViewModel;
+const app = require('application');
+const moment = require('moment');
+const SocialShare = require('nativescript-social-share');
 
-// require("nativescript-nodeify");
-// const HDWalletProvider = require("truffle-hdwallet-provider");
+// Date Converter
+const dateConverter = function(value) {
+    if (value !== undefined) {
+        return moment(value).format('Do MMM YYYY');
+    } else {
+        return '';
+    }
+};
+app.getResources().dateConverter = dateConverter;
 
 function onNavigatingTo(args) {
     const page = args.object;
@@ -75,6 +85,15 @@ function onLogout(args) {
     args.object.page.frame.navigate(routes.login);
 }
 
+function onShare(args) {
+    if (homeViewModel.idCard && homeViewModel.idCard.address) {
+        SocialShare.shareText(
+            homeViewModel.idCard.address
+        );
+    }
+}
+
 exports.onNavigatingTo = onNavigatingTo;
 exports.onLoaded = onLoaded;
 exports.onLogout = onLogout;
+exports.onShare = onShare;

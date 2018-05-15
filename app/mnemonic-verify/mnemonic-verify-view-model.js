@@ -7,8 +7,9 @@ const bip39 = require("bip39");
 const dialogsModule = require("ui/dialogs");
 
 function MnemonicVerifyViewModel() {
+    // "nuclear settle heart work tell mirror tragic anxiety enter advance ship kitchen"
     const viewModel = observableModule.fromObject({
-        mnemonic: "nuclear settle heart work tell mirror tragic anxiety enter advance ship kitchen",
+        mnemonic: "",
         loading: false,
         verifyMnemonic(args) {
             this.mnemonic = this.mnemonic.trim();
