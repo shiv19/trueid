@@ -1,0 +1,61 @@
+.id-card-container {
+    flex-direction: column;
+    padding: 10;
+}
+
+.id-card-header {
+    border-bottom-color: lightgray;
+    border-bottom-width: 1;
+    padding-bottom: 5;
+    margin-bottom: 5;
+}
+
+.id-card-logo {
+    height: 40;
+}
+
+.id-card-username {
+    font-size: 18;
+    text-transform: uppercase;
+    align-self: center;
+    margin-left: 10;
+    color: #3B57FF;
+    font-weight: bold;
+}
+
+.id-card-field {
+    flex-direction: row;
+}
+
+.field-title {
+    align-self: center;
+    font-weight: bold;
+    width: 110;
+}
+
+.field-value {
+    align-self: center;
+    padding-left: 10;
+    font-size: 16;
+    border-left-color: lightgray;
+    border-left-width: 1;
+}
+
+.eth-address {
+    color: #88C633;
+    padding: 5;
+    font-size: 18;
+    border-radius: 5;
+    border-color: #88C633;
+    border-width: 1;
+    font-weight: bold;
+}
+
+.share-btn {
+    transform: translate(-5, -15);
+    border-radius: 10;
+    width: 30;
+    padding: 5;
+    background-color: #45BAFD;
+    color: white;
+}
