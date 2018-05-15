@@ -7,7 +7,7 @@
 
     <ActionBar
         class="action-bar">
-        <GridLayout columns="*, *, auto">
+        <GridLayout ios:width="95%" columns="*, *, auto">
             <Label col="1"
                 class="action-bar-title" 
                 text="TrueID"></Label>
@@ -18,20 +18,22 @@
     </ActionBar>
 
     <ScrollView>
-        <GridLayout row="auto, *, auto" col="*">
+        <GridLayout rows="auto, *, auto" columns="*">
 
-            <WebView row="0" col="0" height="0" id="webView" />
+            <WebView visibility="{{ loaded ? 'visible' : 'collapsed' }}" row="0" col="0" height="0" id="webView" />
             
-            <ActivityIndicator row="1" col="0"
-                height="40" width="40"
-                visibility="{{ !loaded ? 'visible' : 'collapsed' }}" 
-                busy="true" />
+            <android>
+                <ActivityIndicator row="1" col="0"
+                    height="40" width="40"
+                    visibility="{{ !loaded ? 'visible' : 'collapsed' }}" 
+                    busy="true" />
+            </android>
 
             <Label visibility="{{ (loaded && !idCard.fullName) ? 'visible' : 'collapsed' }}" 
-                row="0" col="0" fontSize="18" padding="20" class="text-muted" 
+                row="0" col="0" fontSize="18" padding="20" class="text-muted"
                 text="You don't have any ID cards yet. Please visit an issuer to get ID card." textWrap="true"/>
 
-            <StackLayout class="p-20" row="1" col="0" marginTop="{{ loaded && idCard.fullName ? 0 : 100 }}" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
+            <StackLayout class="p-20" row="1" col="0" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
 
                 <Card:CardView 
                     visibility="{{ loaded && idCard.fullName ? 'visible' : 'collapsed' }}"
@@ -72,12 +74,19 @@
                 <Label class="fa text-center eth-address" textWrap="true"
                     text="{{ address || '' }}" 
                     verticalAlignment="center" />
-                <Label class="fa text-center share-btn" text="&#xf1e0;" tap="onShare" horizontalAlignment="right" />
+                <Label visibility="{{ loaded && address ? 'visible' : 'collapsed' }}" class="fa text-center share-btn" text="&#xf1e0;" tap="onShare" horizontalAlignment="right" />
 
                 <Label class="text-center" fontWeight="bold" fontSize="17" text="QR Code for your address: " textWrap="true"/>
                 <Card:CardView height="250"
                     backgroundColor="white" elevation="10" android:borderRadius="15" ios:borderRadius="10" margin="8">
-                    <Image id="qrCode" />
+                    <GridLayout>   
+                        <FlexboxLayout justifyContent="center" alignItems="center" flexDirection="column">
+                            <ActivityIndicator id="qrSpinner"
+                                height="40" width="40" busy="true" />
+                            <Label class="text-center" text="connecting..." />
+                        </FlexboxLayout>
+                        <Image id="qrCode" />
+                    </GridLayout>
                 </Card:CardView>
 
             </StackLayout>

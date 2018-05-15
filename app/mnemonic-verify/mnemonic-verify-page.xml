@@ -25,9 +25,11 @@
                 text="Verify"
                 tap="{{ verifyMnemonic }}" />
             
-            <ActivityIndicator 
-                visibility="{{ loading ? 'visible' : 'collapse' }}"
-                marginTop="30" busy="true" height="50" />
+            <android>
+                <ActivityIndicator 
+                    visibility="{{ loading ? 'visible' : 'collapse' }}"
+                    marginTop="30" busy="true" height="50" />
+            </android>
             
             <WebView id="webView" />
         </StackLayout>

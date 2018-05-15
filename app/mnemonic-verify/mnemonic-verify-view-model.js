@@ -30,7 +30,8 @@ function MnemonicVerifyViewModel() {
                         name: "slideTop",
                         duration: 380,
                         curve: "easeIn"
-                    }
+                    },
+                    clearHistory: true
                 });
             } else {
                 dialogsModule.alert("You have entered an invalid 12 word pass phrase. Please try again.").then(function() {

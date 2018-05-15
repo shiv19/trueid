@@ -34,7 +34,10 @@ function onNavigatingTo(args) {
     // Goto login page if mnemonic phrase is not set
     const mnemonic = appSettings.getString("mnemonic", "");
     if (mnemonic === "") {
-        topmost().navigate(routes.login);
+        topmost().navigate({
+            moduleName: routes.login,
+            clearHistory: true
+        });
 
         return;
     }
@@ -47,7 +50,7 @@ function onNavigatingTo(args) {
 function onLoaded(args) {
     const page = args.object;
 
-    if (page.bindingContext) {
+    if (page.bindingContext && page.bindingContext.loaded) {
         console.log("setting up webview");
         setupWebViewInterface(page);
     }
@@ -57,6 +60,7 @@ function onLoaded(args) {
 function setupWebViewInterface(page){
     var webView = page.getViewById('webView');
     var qrCode = page.getViewById('qrCode');
+    var qrSpinner = page.getViewById('qrSpinner');
     oWebViewInterface = new webViewInterfaceModule.WebViewInterface(webView, '~/www/index.html');
 
     const mnemonic = appSettings.getString("mnemonic", "");  
@@ -67,6 +71,7 @@ function setupWebViewInterface(page){
         oWebViewInterface.callJSFunction('initWeb3', mnemonic, function(account){
             console.log(account);
             homeViewModel.set("address", account);
+            qrSpinner.visibility = 'collapse';
             qrCode.src = 'https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=' + account;
 
             oWebViewInterface.callJSFunction('getIdCard', null, function(idCard){
