@@ -25,7 +25,7 @@
                 row="0" col="0" fontSize="18" padding="20" class="text-muted" 
                 text="You don't have any ID cards yet. Please visit an issuer to get ID card." textWrap="true"/>
 
-            <StackLayout class="p-20" row="1" col="0" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
+            <StackLayout class="p-20" row="1" col="0" marginTop="{{ loaded && idCard.fullName ? 0 : 100 }}" visibility="{{ loaded ? 'visible' : 'collapsed' }}" >  
 
                 <StackLayout visibility="{{ loaded && idCard.fullName ? 'visible' : 'collapsed' }}">
                     <Label text="{{ 'Name: ' + idCard.fullName }}" />

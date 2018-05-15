@@ -70,6 +70,7 @@ function setupWebViewInterface(page){
 }
 
 function onLogout(args) {
+    appSettings.setString('idCard', '{}');
     appSettings.clear();
     args.object.page.frame.navigate(routes.login);
 }
